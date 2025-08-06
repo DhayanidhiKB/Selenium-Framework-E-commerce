@@ -2,6 +2,7 @@ package uk.co.automationtesting;
 
 import java.io.IOException;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -29,6 +30,7 @@ public class OrderCompleteTest extends Hooks {
 
         // creating an object of the automationtesting.co.uk webpage
         Homepage home = new Homepage();
+        Faker faker= new Faker();
 
         //handles cookie prompt
         home.getCookie().click();
@@ -61,9 +63,9 @@ public class OrderCompleteTest extends Hooks {
         // creating an object of the order personal information page
         OrderFormPersInfo pInfo = new OrderFormPersInfo();
         pInfo.getGenderMr().click();
-        pInfo.getFirstNameField().sendKeys("John");
-        pInfo.getLastnameField().sendKeys("Smith");
-        pInfo.getEmailField().sendKeys("johnsmith@test.com");
+        pInfo.getFirstNameField().sendKeys(faker.name().firstName().toLowerCase());
+        pInfo.getLastnameField().sendKeys(faker.name().lastName().toLowerCase());
+        pInfo.getEmailField().sendKeys(faker.name().firstName() + "@gmail.com");
         pInfo.getTermsConditionsCheckbox().click();
         pInfo.getContinueBtn().click();
 

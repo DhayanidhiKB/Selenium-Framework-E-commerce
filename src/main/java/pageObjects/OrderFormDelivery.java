@@ -14,6 +14,7 @@ public class OrderFormDelivery extends BasePage {
 
     By firstNameField = By.cssSelector("input[name='firstname']");
     By lastNameField = By.cssSelector("input[name='lastname']");
+    By emailIDField=By.xpath("(//input[@id='field-email'])[1]");
     By companyNameField = By.cssSelector("input[name='company']");
     By addressField = By.cssSelector("input[name='address1']");
     By addressComplementField = By.cssSelector("input[name='address2']");
@@ -37,6 +38,11 @@ public class OrderFormDelivery extends BasePage {
     public WebElement getLastnameField() throws IOException {
         this.driver = getDriver();
         return driver.findElement(lastNameField);
+    }
+
+    public WebElement getEmailField() throws IOException {
+        this.driver = getDriver();
+        return driver.findElement(emailIDField);
     }
 
     public WebElement getCompanyField() throws IOException {

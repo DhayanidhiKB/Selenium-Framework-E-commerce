@@ -127,21 +127,6 @@
           <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">uk.co.automationtesting.AddRemoveItemBasketTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="addRemoveItem">
-                  </a> <!-- addRemoveItem -->
-                  <span class="method-name">addRemoveItem</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-passed -->
-          <div class="suite-Suite-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
               <span class="class-name">uk.co.automationtesting.OrderCompleteTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -150,6 +135,21 @@
                   <a name="endToEndTest">
                   </a> <!-- endToEndTest -->
                   <span class="method-name">endToEndTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">uk.co.automationtesting.AddRemoveItemBasketTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="addRemoveItem">
+                  </a> <!-- addRemoveItem -->
+                  <span class="method-name">addRemoveItem</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -163,17 +163,17 @@
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite thread-count=&quot;2&quot; parallel=&quot;tests&quot; name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; parallel=&quot;tests&quot; name=&quot;Test&quot; verbose=&quot;0&quot;&gt;
+&lt;suite parallel=&quot;tests&quot; name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; parallel=&quot;tests&quot; name=&quot;CustomiseOrder&quot; verbose=&quot;0&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;uk.co.automationtesting.AddRemoveItemBasketTest&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Test --&gt;
-  &lt;test thread-count=&quot;5&quot; parallel=&quot;tests&quot; name=&quot;Test2&quot; verbose=&quot;0&quot;&gt;
+  &lt;/test&gt; &lt;!-- CustomiseOrder --&gt;
+  &lt;test thread-count=&quot;5&quot; parallel=&quot;tests&quot; name=&quot;E2E flow&quot; verbose=&quot;0&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;uk.co.automationtesting.OrderCompleteTest&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Test2 --&gt;
+  &lt;/test&gt; &lt;!-- E2E flow --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -185,10 +185,10 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Test (1 class)</span>
+                <span class="test-name">CustomiseOrder (1 class)</span>
               </li>
               <li>
-                <span class="test-name">Test2 (1 class)</span>
+                <span class="test-name">E2E flow (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -218,16 +218,16 @@ data.addRows(2);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'endToEndTest')
 data.setCell(0, 2, 'uk.co.automationtesting.OrderCompleteTest')
-data.setCell(0, 3, 23052);
+data.setCell(0, 3, 16561);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'addRemoveItem')
 data.setCell(1, 2, 'uk.co.automationtesting.AddRemoveItemBasketTest')
-data.setCell(1, 3, 20205);
+data.setCell(1, 3, 11212);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 31 seconds</span>
+              <span class="suite-total-time">Total running time: 22 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -267,25 +267,25 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">endToEndTest</span>
-                <span class="method-start">7703 ms</span>
+                <span class="method-start">5736 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">uk.co.automationtesting.AddRemoveItemBasketTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">addRemoveItem</span>
-                <span class="method-start">7791 ms</span>
+                <span class="method-start">6630 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">27999 ms</span>
+                <span class="method-start">17849 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">uk.co.automationtesting.OrderCompleteTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">30756 ms</span>
+                <span class="method-start">22297 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

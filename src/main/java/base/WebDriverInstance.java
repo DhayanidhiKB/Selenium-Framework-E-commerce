@@ -3,6 +3,7 @@ package base;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -41,22 +42,23 @@ public class WebDriverInstance {
         prop.load(data);
 
         if (prop.getProperty("browser").equals("chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
+            driver = new ChromeDriver();
+           /* ChromeOptions options = new ChromeOptions();
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);*/
         } else if (prop.getProperty("browser").equals("firefox")){
             FirefoxOptions options=new FirefoxOptions();
-            driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
+            /*driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);*/
         }
         else if(prop.getProperty("browser").equals("edge")){
             EdgeOptions options=new EdgeOptions();
-            driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
+            /*driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);*/
         }
         else{
             System.exit(0);
         }
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         return driver;
     }
