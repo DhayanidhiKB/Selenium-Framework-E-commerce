@@ -2,9 +2,10 @@ name: Java Selenium TestNG with Allure Report
 
 on:
   push:
-    branches: [ main ]
+    branches: [master]        # updated to master
   pull_request:
-    branches: [ main ]
+    branches: [master]        # updated to master
+  workflow_dispatch:
 
 jobs:
   build:
