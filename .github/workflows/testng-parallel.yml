@@ -1,4 +1,4 @@
-name: Java Selenium TestNG with Allure Report
+name: Java Selenium TestNG with Allure Reports
 
 on:
   push:
