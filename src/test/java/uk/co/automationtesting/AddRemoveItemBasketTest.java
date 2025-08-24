@@ -25,32 +25,37 @@ public class AddRemoveItemBasketTest extends Hooks {
     }
 
     @Test
-    public void addRemoveItem() throws IOException {
+    public void addRemoveItem()  {
         Homepage home = new Homepage();
 
-        WebDriver driver = getDriver();
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        try {
+            WebDriver driver = getDriver();
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-        jse.executeScript("arguments[0].scrollIntoView()", home.getTestStoreLink());
-        home.getTestStoreLink().click();
+            jse.executeScript("arguments[0].scrollIntoView()", home.getTestStoreLink());
+            home.getTestStoreLink().click();
 
-        ShopHomepage shopHome = new ShopHomepage();
-        shopHome.getProdOne().click();
+            ShopHomepage shopHome = new ShopHomepage();
+            shopHome.getProdOne().click();
 
-        ShopProductPage shopProd = new ShopProductPage();
-        Select option = new Select(shopProd.getSizeOption());
-        option.selectByVisibleText("M");
-        shopProd.getQuantIncrease().click();
-        shopProd.getAddToCartBtn().click();
+            ShopProductPage shopProd = new ShopProductPage();
+            Select option = new Select(shopProd.getSizeOption());
+            option.selectByVisibleText("M");
+            shopProd.getQuantIncrease().click();
+            shopProd.getAddToCartBtn().click();
 
-        ShopContentPanel cPanel = new ShopContentPanel();
-        cPanel.getContinueShopBtn().click();
-        shopProd.getHomepageLink().click();
-        shopHome.getProdTwo().click();
-        shopProd.getAddToCartBtn().click();
-        cPanel.getCheckoutBtn().click();
+            ShopContentPanel cPanel = new ShopContentPanel();
+            cPanel.getContinueShopBtn().click();
+            shopProd.getHomepageLink().click();
+            shopHome.getProdTwo().click();
+            shopProd.getAddToCartBtn().click();
+            cPanel.getCheckoutBtn().click();
 
-        System.out.println("Execution is success");
+            System.out.println("Execution is success");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

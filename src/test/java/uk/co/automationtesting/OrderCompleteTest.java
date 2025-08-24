@@ -21,12 +21,12 @@ import pageObjects.ShoppingCart;
 @Listeners(resources.Listeners.class)
 public class OrderCompleteTest extends Hooks {
 
-    public OrderCompleteTest() throws IOException {
+    public OrderCompleteTest(){
         super();
     }
 
     @Test
-    public void endToEndTest() throws IOException, InterruptedException {
+    public void endToEndTest() throws InterruptedException {
         Faker faker = new Faker();
 
         // Open homepage and handle cookie prompt
