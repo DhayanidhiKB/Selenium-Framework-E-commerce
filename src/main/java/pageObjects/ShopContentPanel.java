@@ -1,7 +1,5 @@
 package pageObjects;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,23 +8,33 @@ import base.BasePage;
 
 public class ShopContentPanel extends BasePage {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
-    By continueShoppingBtn = By.xpath("//button[contains(text(),'Continue shopping')]");
-    By checkoutBtn = By.xpath("//a[contains(text(),'Proceed to checkout')]");
-
-    public ShopContentPanel() throws IOException {
-        this.driver = getDriver();
+    // Safe constructor
+    public ShopContentPanel() {
+        try {
+            this.driver = getDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize driver in ShopContentPanel", e);
+        }
     }
 
-    public WebElement getContinueShopBtn() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(continueShoppingBtn);
+    // Reusable method to find elements
+    private WebElement find(By locator) {
+        return driver.findElement(locator);
     }
 
-    public WebElement getCheckoutBtn() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(checkoutBtn);
+    // Locators
+    private final By continueShoppingBtn = By.xpath("//button[contains(text(),'Continue shopping')]");
+    private final By checkoutBtn = By.xpath("//a[contains(text(),'Proceed to checkout')]");
+
+    // Getter methods
+    public WebElement getContinueShopBtn() {
+        return find(continueShoppingBtn);
     }
 
+    public WebElement getCheckoutBtn() {
+        return find(checkoutBtn);
+    }
 }

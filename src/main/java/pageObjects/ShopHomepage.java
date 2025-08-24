@@ -1,7 +1,5 @@
 package pageObjects;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,58 +7,59 @@ import org.openqa.selenium.WebElement;
 import base.BasePage;
 
 public class ShopHomepage extends BasePage {
-    public WebDriver driver;
+    private WebDriver driver;
 
-    By productOne = By.linkText("Hummingbird Printed T-Shirt");
-    By productTwo = By.linkText("Hummingbird Printed Sweater");
-    By productThree = By.linkText("The Best Is Yet To Come'...");
-    By productFour = By.linkText("The Adventure Begins Framed...");
-    By productFive = By.linkText("Today Is A Good Day Framed...");
-    By productSix = By.linkText("Mug The Best Is Yet To Come");
-    By productSeven = By.linkText("Mug The Adventure Begins");
-    By productEight = By.linkText("Mug Today Is A Good Day");
+    private final By productOne = By.linkText("Hummingbird Printed T-Shirt");
+    private final By productTwo = By.linkText("Hummingbird Printed Sweater");
+    private final By productThree = By.linkText("The Best Is Yet To Come'...");
+    private final By productFour = By.linkText("The Adventure Begins Framed...");
+    private final By productFive = By.linkText("Today Is A Good Day Framed...");
+    private final By productSix = By.linkText("Mug The Best Is Yet To Come");
+    private final By productSeven = By.linkText("Mug The Adventure Begins");
+    private final By productEight = By.linkText("Mug Today Is A Good Day");
 
-    public ShopHomepage() throws IOException {
-        super();
+    public ShopHomepage() {
+        try {
+            this.driver = getDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize driver in ShopHomepage", e);
+        }
     }
 
-    public WebElement getProdOne() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productOne);
+    private WebElement find(By locator) {
+        return driver.findElement(locator);
     }
 
-    public WebElement getProdTwo() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productTwo);
+    public WebElement getProdOne() {
+        return find(productOne);
     }
 
-    public WebElement getProdThree() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productThree);
+    public WebElement getProdTwo() {
+        return find(productTwo);
     }
 
-    public WebElement getProdFour() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productFour);
+    public WebElement getProdThree() {
+        return find(productThree);
     }
 
-    public WebElement getProdFive() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productFive);
+    public WebElement getProdFour() {
+        return find(productFour);
     }
 
-    public WebElement getProdSix() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productSix);
+    public WebElement getProdFive() {
+        return find(productFive);
     }
 
-    public WebElement getProdSeven() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productSeven);
+    public WebElement getProdSix() {
+        return find(productSix);
     }
 
-    public WebElement getProdEight() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(productEight);
+    public WebElement getProdSeven() {
+        return find(productSeven);
+    }
+
+    public WebElement getProdEight() {
+        return find(productEight);
     }
 }

@@ -7,9 +7,15 @@ import org.testng.annotations.BeforeTest;
 
 public class Hooks extends BasePage {
 
-    public Hooks() throws IOException {
-        super();
+    public Hooks() {
+        try {
+            init(); // Initializes properties from config file
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize Hooks", e);
+        }
     }
+
 
     @BeforeTest
     public void setup() throws IOException {

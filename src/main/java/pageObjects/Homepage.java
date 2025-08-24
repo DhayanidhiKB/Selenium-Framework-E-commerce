@@ -1,7 +1,5 @@
 package pageObjects;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +8,21 @@ import base.BasePage;
 
 public class Homepage extends BasePage {
 
-    public WebDriver driver;
+    private WebDriver driver;
+
+    // Clean constructor, no exception
+    public Homepage() {
+        try {
+            this.driver = getDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Driver initialization failed in Homepage", e);
+        }
+    }
+
+    private WebElement find(By locator) {
+        return driver.findElement(locator);
+    }
 
     By toggle = By.cssSelector(".toggle");
     By homeLink = By.linkText("HOMEPAGE");
@@ -34,113 +46,87 @@ public class Homepage extends BasePage {
     By aboutMeLink = By.linkText("ABOUT ME");
     By cookie = By.cssSelector(".close-cookie-warning > span");
 
-    public Homepage() throws IOException {
-        super();
+    public WebElement getToggle() {
+        return find(toggle);
     }
 
-    public WebElement getToggle() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(toggle);
+    public WebElement getHomepageLink() {
+        return find(homeLink);
     }
 
-    public WebElement getHomepageLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(homeLink);
+    public WebElement getAccordionLink() {
+        return find(accordionLink);
     }
 
-    public WebElement getAccordionLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(accordionLink);
+    public WebElement getBrowserTabLink() {
+        return find(browserTabLink);
     }
 
-    public WebElement getBrowserTabLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(browserTabLink);
+    public WebElement getButtonLink() {
+        return find(buttonsLink);
     }
 
-    public WebElement getButtonLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(buttonsLink);
+    public WebElement getCalcLink() {
+        return find(calcLink);
     }
 
-    public WebElement getCalcLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(calcLink);
+    public WebElement getContactUsLink() {
+        return find(contactUsLink);
     }
 
-    public WebElement getContactUsLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(contactUsLink);
+    public WebElement getDatePickerLink() {
+        return find(datePickerLink);
     }
 
-    public WebElement getDatePickerLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(datePickerLink);
+    public WebElement getDropdownLink() {
+        return find(dropdownLink);
     }
 
-    public WebElement getDropdownLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(dropdownLink);
+    public WebElement getFileUploadLink() {
+        return find(fileUpload);
     }
 
-    public WebElement getFileUploadLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(fileUpload);
+    public WebElement getHiddenElementsLink() {
+        return find(hiddenElementsLink);
     }
 
-    public WebElement getHiddenElementsLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(hiddenElementsLink);
+    public WebElement getIframeLink() {
+        return find(iFrameLink);
     }
 
-    public WebElement getIframeLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(iFrameLink);
+    public WebElement getLoaderLink() {
+        return find(loaderLink);
     }
 
-    public WebElement getLoaderLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(loaderLink);
+    public WebElement getLoginPortalLink() {
+        return find(loginPortalLink);
     }
 
-    public WebElement getLoginPortalLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(loginPortalLink);
+    public WebElement getMouseLink() {
+        return find(mouseLink);
     }
 
-    public WebElement getMouseLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(mouseLink);
+    public WebElement getPopupLink() {
+        return find(popupLink);
     }
 
-    public WebElement getPopupLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(popupLink);
+    public WebElement getPredictiveLink() {
+        return find(predictiveLink);
     }
 
-    public WebElement getPredictiveLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(predictiveLink);
+    public WebElement getTablesLink() {
+        return find(tablesLink);
     }
 
-    public WebElement getTablesLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(tablesLink);
+    public WebElement getTestStoreLink() {
+        return find(testStoreLink);
     }
 
-    public WebElement getTestStoreLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(testStoreLink);
+    public WebElement getAboutMeLink() {
+        return find(aboutMeLink);
     }
 
-    public WebElement getAboutMeLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(aboutMeLink);
+    public WebElement getCookie() {
+        return find(cookie);
     }
-
-    public WebElement getCookie() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(cookie);
-    }
-
 }

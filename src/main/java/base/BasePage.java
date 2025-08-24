@@ -2,6 +2,7 @@ package base;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,10 +21,19 @@ public class BasePage {
     private String url;
     private Properties prop;
 
-    public BasePage() throws IOException {
-        prop = new Properties();
+    public BasePage() {
+       /* prop = new Properties();
         FileInputStream data = new FileInputStream(
                 System.getProperty("user.dir") + "\\src\\main\\java\\resources\\config.properties");
+        prop.load(data);*/
+    }
+
+    protected void init() throws IOException {
+        prop = new Properties();
+        FileInputStream data = new FileInputStream(
+                System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" +
+                        File.separator + "java" + File.separator + "resources" + File.separator + "config.properties"
+        );
         prop.load(data);
     }
 

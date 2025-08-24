@@ -1,7 +1,5 @@
 package pageObjects;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,22 +7,34 @@ import org.openqa.selenium.WebElement;
 import base.BasePage;
 
 public class OrderFormShippingMethod extends BasePage {
-    public WebDriver driver;
 
-    By deliveryMsgTextbox = By.cssSelector("textarea#delivery_message");
-    By continueBtn = By.cssSelector("[name='confirmDeliveryOption']");
+    private WebDriver driver;
 
-    public OrderFormShippingMethod() throws IOException {
-        super();
+    // Constructor with safe driver initialization
+    public OrderFormShippingMethod() {
+        try {
+            this.driver = getDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize WebDriver in OrderFormShippingMethod", e);
+        }
     }
 
-    public WebElement getDeliveryMsgTextbox() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(deliveryMsgTextbox);
+    // Common find method to reduce repetition
+    private WebElement find(By locator) {
+        return driver.findElement(locator);
     }
 
-    public WebElement getContinueBtn() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(continueBtn);
+    // Locators
+    private final By deliveryMsgTextbox = By.cssSelector("textarea#delivery_message");
+    private final By continueBtn = By.cssSelector("[name='confirmDeliveryOption']");
+
+    // Getter methods
+    public WebElement getDeliveryMsgTextbox() {
+        return find(deliveryMsgTextbox);
+    }
+
+    public WebElement getContinueBtn() {
+        return find(continueBtn);
     }
 }

@@ -1,7 +1,5 @@
 package pageObjects;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,41 +8,44 @@ import base.BasePage;
 
 public class ShopProductPage extends BasePage {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
-    By sizeOption = By.cssSelector("[data-product-attribute='1']");
-    By quantityIncrease = By.cssSelector(".touchspin-up");
-    By quantityDecrease = By.cssSelector(".touchspin-down");
-    By addToCartBtn = By.cssSelector(".add-to-cart.btn.btn-primary");
-    By homepageLink = By.xpath("//span[.='Home']");
+    private final By sizeOption = By.cssSelector("[data-product-attribute='1']");
+    private final By quantityIncrease = By.cssSelector(".touchspin-up");
+    private final By quantityDecrease = By.cssSelector(".touchspin-down");
+    private final By addToCartBtn = By.cssSelector(".add-to-cart.btn.btn-primary");
+    private final By homepageLink = By.xpath("//span[.='Home']");
 
-    public ShopProductPage() throws IOException {
-        super();
+    public ShopProductPage() {
+        try {
+            this.driver = getDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize driver in ShopProductPage", e);
+        }
     }
 
-    public WebElement getSizeOption() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(sizeOption);
+    private WebElement find(By locator) {
+        return driver.findElement(locator);
     }
 
-    public WebElement getQuantIncrease() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(quantityIncrease);
+    public WebElement getSizeOption() {
+        return find(sizeOption);
     }
 
-    public WebElement getQuantDecrease() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(quantityDecrease);
+    public WebElement getQuantIncrease() {
+        return find(quantityIncrease);
     }
 
-    public WebElement getAddToCartBtn() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(addToCartBtn);
+    public WebElement getQuantDecrease() {
+        return find(quantityDecrease);
     }
 
-    public WebElement getHomepageLink() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(homepageLink);
+    public WebElement getAddToCartBtn() {
+        return find(addToCartBtn);
     }
 
+    public WebElement getHomepageLink() {
+        return find(homepageLink);
+    }
 }

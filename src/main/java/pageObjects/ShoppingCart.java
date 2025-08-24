@@ -1,7 +1,5 @@
 package pageObjects;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,53 +8,54 @@ import base.BasePage;
 
 public class ShoppingCart extends BasePage {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
-    By havePromo = By.cssSelector(".promo-code-button .collapse-button");
-    By promoTextbox = By.cssSelector("input[name='discount_name']");
-    By promoAddBtn = By.cssSelector("form[method='post']  span");
-    By proceedToCheckoutBtn = By.cssSelector(".cart-detailed-actions .btn-primary");
-    By deleteItemOne = By.cssSelector(".cart-items .cart-item:nth-of-type(1) .float-xs-left");
-    By deleteItemTwo = By.cssSelector(".cart-items .cart-item:nth-of-type(2) .float-xs-left");
-    By totalValue = By.cssSelector(".cart-total .value");
+    private final By havePromo = By.cssSelector(".promo-code-button .collapse-button");
+    private final By promoTextbox = By.cssSelector("input[name='discount_name']");
+    private final By promoAddBtn = By.cssSelector("form[method='post']  span");
+    private final By proceedToCheckoutBtn = By.cssSelector(".cart-detailed-actions .btn-primary");
+    private final By deleteItemOne = By.cssSelector(".cart-items .cart-item:nth-of-type(1) .float-xs-left");
+    private final By deleteItemTwo = By.cssSelector(".cart-items .cart-item:nth-of-type(2) .float-xs-left");
+    private final By totalValue = By.cssSelector(".cart-total .value");
 
-    public ShoppingCart() throws IOException {
-        super();
+    public ShoppingCart() {
+        try {
+            this.driver = getDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize driver in ShoppingCart", e);
+        }
     }
 
-    public WebElement getHavePromo() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(havePromo);
+    private WebElement find(By locator) {
+        return driver.findElement(locator);
     }
 
-    public WebElement getPromoTextbox() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(promoTextbox);
+    public WebElement getHavePromo() {
+        return find(havePromo);
     }
 
-    public WebElement getPromoAddBtn() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(promoAddBtn);
+    public WebElement getPromoTextbox() {
+        return find(promoTextbox);
     }
 
-    public WebElement getProceedCheckoutBtn() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(proceedToCheckoutBtn);
+    public WebElement getPromoAddBtn() {
+        return find(promoAddBtn);
     }
 
-    public WebElement getDeleteItemOne() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(deleteItemOne);
+    public WebElement getProceedCheckoutBtn() {
+        return find(proceedToCheckoutBtn);
     }
 
-    public WebElement getDeleteItemTwo() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(deleteItemTwo);
+    public WebElement getDeleteItemOne() {
+        return find(deleteItemOne);
     }
 
-    public WebElement getTotalAmount() throws IOException {
-        this.driver = getDriver();
-        return driver.findElement(totalValue);
+    public WebElement getDeleteItemTwo() {
+        return find(deleteItemTwo);
     }
 
+    public WebElement getTotalAmount() {
+        return find(totalValue);
+    }
 }
