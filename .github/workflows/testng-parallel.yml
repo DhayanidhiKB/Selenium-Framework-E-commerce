@@ -23,27 +23,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK 17 and Maven
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
 
-      - name: Set up Maven
-        uses: s4u/setup-maven-action@v1
-        with:
-          maven-version: '3.8.8'
-
-      - name: Run Tests with Maven (Remote WebDriver)
-        env:
-          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+      - name: Run Tests with Maven
         run: |
-          echo "Running tests using Remote WebDriver at $SELENIUM_REMOTE_URL"
-          mvn clean test -Dselenium.remote.url=$SELENIUM_REMOTE_URL
+          echo "Running tests using hardcoded RemoteWebDriver at http://localhost:4444/wd/hub"
+          mvn clean test
 
       - name: Generate Allure Report
-        run: |
-          mvn allure:report
+        run: mvn allure:report
 
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v4
