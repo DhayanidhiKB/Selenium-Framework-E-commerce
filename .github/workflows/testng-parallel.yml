@@ -1,15 +1,23 @@
-name: Java Selenium TestNG with Allure Reports
+name: Java Selenium TestNG with Allure Reports (Docker Grid)
 
 on:
   push:
-    branches: [master]        # updated to master
+    branches: [master]
   pull_request:
-    branches: [master]        # updated to master
+    branches: [master]
   workflow_dispatch:
 
 jobs:
-  build:
+  selenium-tests:
     runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
 
     steps:
       - name: Checkout code
@@ -21,31 +29,17 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install Chrome
-        run: |
-             sudo apt-get update
-             sudo apt-get install -y software-properties-common apt-transport-https wget
-             wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-             echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-             sudo apt-get update
-             sudo apt-get install -y google-chrome-stable
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1
+        with:
+          maven-version: '3.8.8'
 
-      - name: Install ChromeDriver
+      - name: Run Tests with Maven (Remote WebDriver)
+        env:
+          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
         run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | head -1)
-          DRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION || echo "")
-          if [ -z "$DRIVER_VERSION" ]; then
-            DRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          fi
-          wget -O chromedriver.zip https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver.zip
-          sudo mv chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
-
-      - name: Run Tests with Maven
-        run: |
-          Xvfb :99 & export DISPLAY=:99
-          mvn clean test
+          echo "Running tests using Remote WebDriver at $SELENIUM_REMOTE_URL"
+          mvn clean test -Dselenium.remote.url=$SELENIUM_REMOTE_URL
 
       - name: Generate Allure Report
         run: |
